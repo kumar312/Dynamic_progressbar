@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
+  const move = () => {
+    var elem = document.getElementById("mybar");
+    var width = 1;
+    var id = setInterval(frame, 10)
+
+    function frame(){
+      if(width >= 100){
+        clearInterval(id);
+      }else{
+        width++;
+        elem.style.width = width + "%";
+        document.getElementById("incvalue").innerHTML = width + "%";
+      }
+    }
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1 className="heading">Dynamic animated progressbar</h1>
+
+      <div className="myprogress">
+        <div id="mybar">
+          <span id="incvalue">1%</span>
+        </div>
+      </div>
+      <br /> <button onClick={move}>click me</button>
+    </>
   );
 }
 
